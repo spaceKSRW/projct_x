@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Data Update</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar {
+      padding: 0px;
+      color: #fff;
+      text-align: center;
+    }
+
+    form {
+        bottom:20px;
+      background-color: #fff;
+      
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 300px; /* Adjust the width as needed */
+      margin: 20px auto;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    input[type="text"], input[type="tel"] {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    input[type="checkbox"] {
+      margin-right: 5px;
+    }
+
+    input[type="submit"] {
+      background-color: #4caf50;
+      color: #fff;
+      padding: 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+
+    .conditional-input {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="navbar">
+    <%- include('navbar/header') %>
+</div>
+
+<form action="/putEditEmployeeUpdate?_method=PUT" method="POST">
+  <!-- Replace "/submit-update" with your actual form submission endpoint -->
+  <input type="hidden" name="_method" value="PUT">
+  <h2>User Data Update</h2>
+
+  <label>
+    <input type="checkbox" id="enableFirstName" name="enableFirstName">
+    Update First Name
+  </label>
+
+  <div class="conditional-input" id="firstNameInput">
+    <label for="newFirstName">New First Name:</label>
+    <input type="text" id="newFirstName" name="newFirstName">
+  </div>
+
+  <br>
+
+  <label>
+    <input type="checkbox" id="enableLastName" name="enableLastName">
+    Update Last Name
+  </label>
+
+  <div class="conditional-input" id="lastNameInput">
+    <label for="newLastName">New Last Name:</label>
+    <input type="text" id="newLastName" name="newLastName">
+  </div>
+
+  <br>
+
+  <label>
+    <input type="checkbox" id="enableAddress" name="enableAddress">
+    Update Address
+  </label>
+
+  <div class="conditional-input" id="addressInput">
+    <label for="address">Address:</label>
+    <input type="text" id="address" name="address">
+  </div>
+
+  <br>
+
+  <label>
+    <input type="checkbox" id="enablePhone" name="enablePhone">
+    Update Phone
+  </label>
+
+  <div class="conditional-input" id="phoneInput">
+    <label for="phone">Phone:</label>
+    <input type="tel" id="phone" name="phone" pattern="[0-9]{10}">
+    <!-- Assuming a 10-digit phone number; you can adjust the pattern as needed -->
+  </div>
+
+  <br>
+
+  <input type="submit" value="Update">
+</form>
+
+<script>
+  const enableFirstNameCheckbox = document.getElementById('enableFirstName');
+  const firstNameInput = document.getElementById('firstNameInput');
+
+  const enableLastNameCheckbox = document.getElementById('enableLastName');
+  const lastNameInput = document.getElementById('lastNameInput');
+
+  const enableAddressCheckbox = document.getElementById('enableAddress');
+  const addressInput = document.getElementById('addressInput');
+
+  const enablePhoneCheckbox = document.getElementById('enablePhone');
+  const phoneInput = document.getElementById('phoneInput');
+
+  enableFirstNameCheckbox.addEventListener('change', function() {
+    firstNameInput.style.display = enableFirstNameCheckbox.checked ? 'block' : 'none';
+  });
+
+  enableLastNameCheckbox.addEventListener('change', function() {
+    lastNameInput.style.display = enableLastNameCheckbox.checked ? 'block' : 'none';
+  });
+
+  enableAddressCheckbox.addEventListener('change', function() {
+    addressInput.style.display = enableAddressCheckbox.checked ? 'block' : 'none';
+  });
+
+  enablePhoneCheckbox.addEventListener('change', function() {
+    phoneInput.style.display = enablePhoneCheckbox.checked ? 'block' : 'none';
+  });
+</script>
+
+</body>
+</html>

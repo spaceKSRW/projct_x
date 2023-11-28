@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Employee Portal</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start; /* Align the container to the left */
+        height: 100vh;
+        background: url("https://img.freepik.com/premium-photo/cheerful-young-group-asian-businessmen-casual-with-one-sitting-pointing-computer-display-colleagues-discussing-around-him-during-meeting-diversity-businessmen-meeting_43263-4361.jpg?w=2000")
+          no-repeat center center fixed;
+        background-size: cover;
+        position: relative;
+      }
+      body::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: rgba(
+          207,
+          201,
+          201,
+          0.3
+        ); /* Translucent white overlay */
+        z-index: 0; /* Set z-index to be below the portal-container */
+      }
+
+      .portal-container {
+        width: 30%;
+        height: 60%;
+        left:10px;
+        border: 1px solid rgba(128, 128, 128, 0.5);
+        border-radius: 5%;
+        background-color: rgba(207, 201, 201, 0.9);
+        text-align: center;
+        position: relative;
+        justify-content: center;
+        align-items: center;
+        z-index: 1;
+        padding: 20px;
+      }
+    
+      .portal-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 20px; /* Increase padding to make the buttons larger */
+    border-radius: 8px;
+    border: 2px solid #007bff;
+}
+
+.button-63 {
+  align-items: center;
+  margin-bottom: 10px; 
+  background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
+  border: 0;
+  border-radius: 8px;
+  box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  display: flex;
+  font-family: Phantomsans, sans-serif;
+  font-size: 20px;
+  justify-content: center;
+  line-height: 1em;
+  max-width: 100%;
+  min-width: 140px;
+  padding: 19px 24px;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.button-63:active,
+.button-63:hover {
+  outline: 0;
+}
+.button-c{
+    display:flex;
+    gap:20px;
+    flex-direction: column;
+    row-gap:30px;
+}
+@media (min-width: 768px) {
+  .button-63 {
+    font-size: 24px;
+    min-width: 196px;
+  }
+}
+    </style>
+  </head>
+  <body>
+    <div class="portal-container">
+      <h2
+        style="
+          font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial,
+            sans-serif;
+          font-size: xx-large;
+        "
+      >
+        Welcome to the Employee Portal
+      </h2>
+     
+      <div id="button-c">
+        <button class="button-63" onclick="window.location.href='/login'">Login</button>
+        <button class="button-63" onclick="window.location.href='/signup'">Signup</button>
+      </div>
+        
+     
+    </div>
+  </body>
+</html>

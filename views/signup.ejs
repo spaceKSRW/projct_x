@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Employee Signup</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+      }
+
+      .signup-container {
+        display: flex;
+        align-items: center; /* Align items vertically in the center */
+      }
+
+      .signup-form {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        width: 400px; /* Increased the width of the signup form */
+        text-align: center;
+        margin-right: 20px; /* Adjust the margin as needed */
+      }
+
+      .signup-form h2 {
+        margin-bottom: 20px;
+        color: #333;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        color: #555;
+      }
+
+      .form-group input,
+      .form-group select {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+
+      .form-group button {
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      .form-group button:hover {
+        background-color: #0056b3;
+      }
+
+      .pics img {
+        max-width: 400%; /* Doubled the width of the image */
+        height: auto;
+        max-height: 500px; /* Set a maximum height for the image */
+      }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js"></script>
+  </head>
+  <body>
+    <div class="signup-container">
+      <div class="signup-form">
+        <h2
+          style="
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial,
+              sans-serif;
+            font-size: xx-large;
+          "
+        >
+          Employee Signup
+        </h2>
+
+        <form id="signupForm" action="/signup" method="post">
+          <div class="form-group">
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" name="firstName" required />
+          </div>
+          <div class="form-group">
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" name="lastName" required />
+          </div>
+          <div class="form-group">
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" required />
+          </div>
+          <div class="form-group">
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender" required>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+          <div class="form-group">
+            <label for="role">Role:</label>
+            <select id="role" name="role" required>
+              <option value="employee">Employee</option>
+              <option value="manager">Manager</option>
+              <option value="admin">Admin</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" required />
+          </div>
+          <div class="form-group">
+            <label for="department">Department:</label>
+            <select id="department" name="department" required>
+              <option value="IT">IT</option>
+              <option value="Sales">Sales</option>
+              <option value="Marketing">Marketing</option>
+              <option value="Finance">Finance</option>
+              <option value="Accounts">Accounts</option>
+              <option value="Customer Support">Customer Support</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="manager">Manager ID:</label>
+            <input
+              type="text"
+              id="manager"
+              name="manager"
+              required
+              placeholder="required field for employee"
+            />
+          </div>
+          <div class="form-group">
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" required />
+          </div>
+          <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required />
+          </div>
+
+          <div class="form-group">
+            <button type="submit">Signup</button>
+          </div>
+        </form>
+        <script>
+          function handleRoleChange() {
+            const roleSelect = document.getElementById("role");
+            const managerInput = document.getElementById("manager");
+            const departmentInput = document.getElementById("department");
+
+            // Enable or disable the manager input based on the selected role
+            roleSelect.addEventListener("change", function () {
+              if(roleSelect.value === "admin"){
+                departmentInput.disabled=true;
+              }
+              else{
+                departmentInput.disabled=false;
+              }
+              if (
+                roleSelect.value === "manager" ||
+                roleSelect.value === "admin"
+              ) {
+                managerInput.disabled = true;
+              } else if (roleSelect.value === "employee") {
+                managerInput.disabled = false;
+              }
+            });
+          }
+
+          handleRoleChange();
+        </script>
+      </div>
+      <div class="pics">
+        <img
+          src="https://img.freepik.com/free-vector/chief-police-concept-illustration_114360-16949.jpg?w=1480&t=st=1700734237~exp=1700734837~hmac=4f86dde747dc06bd5012dc599723dc9d0d1dd7e6e4b8001604c45c81e3461065"
+          alt="Chief Police"
+        />
+      </div>
+    </div>
+    <script>
+      // Check for email error and display an alert
+      <% if (errors.emailError) { %>
+        alert("<%= errors.emailError %>");
+      <% } %>
+
+      // Check for password error and display an alert
+      <% if (errors.passwordError) { %>
+        alert("<%= errors.passwordError %>");
+      <% } %>
+      <% if (errors.firstNameError) { %>
+        alert("<%= errors.firstNameError %>");
+      <% } %>
+      <% if (errors.lastNameError) { %>
+        alert("<%= errors.lastNameError %>");
+      <% } %>
+      <% if (errors.other) { %>
+        alert("<%= errors.other %>");
+      <% } %>
+      <% if (errors.cbm) { %>
+        alert("<%= errors.cbm %>");
+      <% } %>
+      <% if (errors.daa) { %>
+        alert("<%= errors.daa %>");
+      <% } %>
+      <% if (errors.adminError) { %>
+        alert("<%= errors.adminError %>");
+      <% } %>
+      <% if (errors.imi) { %>
+        alert("<%= errors.imi %>");
+      <% } %>
+      <% if (errors.mIdNotMatch) { %>
+        alert("<%= errors.mIdNotMatch %>");
+      <% } %>
+      // Add similar blocks for other error messages
+    </script>
+  </body>
+</html>
